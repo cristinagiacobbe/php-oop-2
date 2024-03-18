@@ -1,0 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.row {
+    display: flex;
+}
+
+.col {
+    width: calc(100% / 12 * 4);
+    border: 1px solid black;
+}
