@@ -59,17 +59,17 @@ class Sits extends Products
 }
 
 $food = [
-    new Food('Bocconcini', 'Cat', '../img/bocconcini.jpg', '€ 7,68', 'chicken'),
-    new Food('Crocchette', 'Dog', '../img/crocchette.jpg', '€ 5,50', 'meat'),
+    new Food('Bocconcini', 'fa-solid fa-cat', './img/bocconcini.jpg', '€ 7,68', 'chicken'),
+    new Food('Crocchette', 'fa-solid fa-dog', './img/crocchette.jpg', '€ 5,50', 'meat'),
 ];
 $toys = [
-    new Toys('Mouse peluche', 'Cat', '../img/mouse.jpg', '€ 10,00', 'peluche'),
-    new Toys('Osso', 'Dog', '../img/osso.jpg', '€ 5,00', 'plastic'),
+    new Toys('Mouse peluche', 'fa-solid fa-cat', './img/mouse.jpg', '€ 10,00', 'peluche'),
+    new Toys('Osso', 'fa-solid fa-dog', './img/osso.jpg', '€ 5,00', 'plastic'),
 
 ];
 $sits = [
-    new Sits('Lettiera', 'Cat', '../img/lettiera.jpg', '€ 6,00', 'plastic', 'medium'),
-    new Sits('Cuccia', 'Dog', '../img/cuccia.jpg', '€ 80,00', 'wood', 'extra-large'),
+    new Sits('Lettiera', 'fa-solid fa-cat', './img/lettiera.jpg', '€ 6,00', 'plastic', 'medium'),
+    new Sits('Cuccia', 'fa-solid fa-dog', './img/cuccia.jpg', '€ 80,00', 'wood', 'extra-large'),
 ];
 
 $products = [$food, $toys, $sits];
@@ -92,26 +92,31 @@ foreach ($products as $product) {
     <title>Animal e-commerce shop</title>
     <link rel="stylesheet" href="style.css">
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3' crossorigin='anonymous'>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
 <body>
     <h1>Animal product</h1>
-    <div class="row">
-        <div class="col">
-            <div class="card">
-                <ul class="list-unstyled">
-                    <?php foreach ($products as $key => $product) : ?>
-                        <li><?php foreach ($product as $typeProduct) : ?>
-                                <p><?php echo $typeProduct->name ?></p>
-                                <p><?php echo $typeProduct->category ?></p>
-                                <p><?php echo $typeProduct->price ?></p>
-                            <?php endforeach; ?>
-                        </li>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-2 col-sm-1">
+                <div class="card">
+                    <ul class="list-unstyled">
+                        <?php foreach ($products as $key => $product) : ?>
+                            <li><?php foreach ($product as $typeProduct) : ?>
+                                    <p><?php echo $typeProduct->name ?></p>
+                                    <i class="<?php echo $typeProduct->category ?>"></i>
+                                    <p><?php echo $typeProduct->price ?></p>
+                                    <img src="<?php echo $typeProduct->image ?>" alt="">
 
-                    <?php endforeach; ?>
-                </ul>
+
+                                <?php endforeach; ?>
+                            </li>
+
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
