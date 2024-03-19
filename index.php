@@ -13,12 +13,20 @@ class Products
     /**
      * Generic class of product (parent class)
      */
-    public function __construct(public $name, public $category, public $image, public $price)
+    public function __construct(public $name, public Categories $categories, public $image, public $price)
     {
         $this->name = $name;
-        $this->category = $category;
+        $this->categories = $categories;
         $this->image = $image;
         $this->price = $price;
+    }
+}
+class Categories
+{
+    public function __construct(public $name, public $icon)
+    {
+        $this->name = $name;
+        $this->icon = $icon;
     }
 }
 class Food extends Products
@@ -26,9 +34,9 @@ class Food extends Products
     /**
      * Specific class of product (child class)
      */
-    public function __construct($name, $category, $image, $price, public $ingredients)
+    public function __construct($name, Categories $categories, $image, $price, public $ingredients)
     {
-        parent::__construct($name, $category, $image, $price);
+        parent::__construct($name, $categories, $image, $price);
         $this->ingredients = $ingredients;
     }
 }
@@ -38,9 +46,9 @@ class Toys extends Products
     /**
      * Specific class of product (child class)
      */
-    public function __construct($name, $category, $image, $price, public $material)
+    public function __construct($name, Categories $categories, $image, $price, public $material)
     {
-        parent::__construct($name, $category, $image, $price);
+        parent::__construct($name, $categories, $image, $price);
         $this->material = $material;
     }
 }
@@ -50,26 +58,26 @@ class Sits extends Products
     /**
      * Specific class of product (child class)
      */
-    public function __construct($name, $category, $image, $price, public $material, public $measure)
+    public function __construct($name, Categories $categories, $image, $price, public $material, public $measure)
     {
-        parent::__construct($name, $category, $image, $price);
+        parent::__construct($name, $categories, $image, $price);
         $this->material = $material;
         $this->measure = $measure;
     }
 }
 
 $food = [
-    new Food('Bocconcini', 'fa-solid fa-cat', './img/bocconcini.jpg', '€ 7,68', 'chicken'),
-    new Food('Crocchette', 'fa-solid fa-dog', './img/crocchette.jpg', '€ 5,50', 'meat'),
+    new Food('Bocconcini', new Categories('cat', 'fa-solid fa-cat'), './img/bocconcini.jpg', '€ 7,68', 'chicken'),
+    new Food('Crocchette', new Categories('dog', 'fa-solid fa-dog'), './img/crocchette.jpg', '€ 5,50', 'meat'),
 ];
 $toys = [
-    new Toys('Mouse peluche', 'fa-solid fa-cat', './img/mouse.jpg', '€ 10,00', 'peluche'),
-    new Toys('Osso', 'fa-solid fa-dog', './img/osso.jpg', '€ 5,00', 'plastic'),
+    new Toys('Mouse peluche', new Categories('cat', 'fa-solid fa-cat'), './img/mouse.jpg', '€ 10,00', 'peluche'),
+    new Toys('Osso', new Categories('dog', 'fa-solid fa-dog'), './img/osso.jpg', '€ 5,00', 'plastic'),
 
 ];
 $sits = [
-    new Sits('Lettiera', 'fa-solid fa-cat', './img/lettiera.jpg', '€ 6,00', 'plastic', 'medium'),
-    new Sits('Cuccia', 'fa-solid fa-dog', './img/cuccia.jpg', '€ 80,00', 'wood', 'extra-large'),
+    new Sits('Lettiera', new Categories('cat', 'fa-solid fa-cat'), './img/lettiera.jpg', '€ 6,00', 'plastic', 'medium'),
+    new Sits('Cuccia', new Categories('dog', 'fa-solid fa-dog'), './img/cuccia.jpg', '€ 80,00', 'wood', 'extra-large'),
 ];
 
 $products = [$food, $toys, $sits];
@@ -103,13 +111,15 @@ foreach ($products as $product) {
             <div class="col-2 col-sm-1">
                 <div class="card">
                     <ul class="list-unstyled">
-                        <?php foreach ($products as $key => $product) : ?>
+                        <?php foreach ($products as $product) : ?>
                             <li><?php foreach ($product as $typeProduct) : ?>
                                     <p><?php echo $typeProduct->name ?></p>
-                                    <i class="<?php echo $typeProduct->category ?>"></i>
+
                                     <p><?php echo $typeProduct->price ?></p>
                                     <img src="<?php echo $typeProduct->image ?>" alt="">
-
+                                    <?php foreach ($typeProduct as $category) : ?>
+                                        <i class="<?php echo $category->categories ?>"></i>
+                                    <?php endforeach; ?>
 
                                 <?php endforeach; ?>
                             </li>
