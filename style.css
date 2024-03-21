@@ -4,22 +4,15 @@
     box-sizing: border-box;
 }
 
-.row {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.col {
-
-    width: calc(100% / 12 * 6);
-}
-
-.card {
-    border: 1px solid black;
-}
 
 h1 {
     text-align: center;
-    margin: auto;
+    margin-bottom: 20px;
+    padding: 20px;
 
+
+}
+
+.row {
+    margin-top: 20px;
 }
