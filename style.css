@@ -8,9 +8,16 @@
 h1 {
     text-align: center;
     margin-bottom: 20px;
-    padding: 20px;
+}
 
+img {
+    max-height: 50%;
+    max-width: 50%;
+    padding-top: 15px;
+}
 
+h3 {
+    text-align: center;
 }
 
 .row {
